@@ -1,0 +1,9 @@
+-@val body: String
+!!!5
+%html
+  %title Hello
+  %link(rel="stylesheet" type="text/css" href='#{Assets.at("css/bootstrap.min.css")}')
+  %script(type="text/javascript" src='#{Assets.at("js/bootstrap.min.js")}')
+  %script(type="text/javascript" src='#{Assets.at("js/jquery-1.9.0.min.js")}')
+  %body
+    -unescape(body)
