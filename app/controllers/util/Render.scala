@@ -7,13 +7,21 @@ import org.fusesource.scalate._
 import org.fusesource.scalate.util.FileResourceLoader
 import org.fusesource.scalate.layout.DefaultLayoutStrategy
 import play.api.http._
+import org.fusesource.scalate.util._
+import java.util.Scanner
 
 object Render {
   
   val scalateEngine = {
     val engine = new TemplateEngine
-    engine.resourceLoader = new FileResourceLoader(Some(Play.getFile("app/views")))
-    engine.layoutStrategy = new DefaultLayoutStrategy(engine, "app/views/layout/default.scaml")
+    engine.resourceLoader = new ResourceLoader {
+      override def resource(uri: String): Option[Resource] = {
+        val is = engine.classLoader.getResourceAsStream("views/" + uri)
+        val s = new Scanner(is).useDelimiter("\\A")
+        Some(Resource.fromText(uri, s.next()))
+      }
+    }
+    engine.layoutStrategy = new DefaultLayoutStrategy(engine, "layout/default.scaml")
     engine.classpath = "tmp/classes"
     engine.workingDirectory = Play.getFile("tmp")
     engine.combinedClassPath = true
