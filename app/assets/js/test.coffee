@@ -1,4 +1,5 @@
 $ ->
+  "use strict"
   $("#grid").jqGrid({
     url: "grid.json"
     datatype: "json"
@@ -15,3 +16,12 @@ $ ->
       } ]
     rowNum: 40
     })
+  socket = $.atmosphere  
+  request = {
+    url: "/echo"
+    transport: "websocket"
+    }
+  request.onMessage = (response) ->
+    console.log(response.responseBody)
+  socket.subscribe(request).push("Hello")
+  
