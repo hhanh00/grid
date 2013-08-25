@@ -2,8 +2,11 @@
 !!!5
 %html
   %title Hello
-  %link(rel="stylesheet" type="text/css" href='#{Assets.at("css/bootstrap.min.css")}')
+  %link(rel="stylesheet" type="text/css" href='#{Assets.at("css/ui-lightness/jquery-ui-1.10.3.custom.min.css")}')
+  %link(rel="stylesheet" type="text/css" href='#{Assets.at("css/ui.jqgrid.css")}')
   %script(type="text/javascript" src='#{Assets.at("js/jquery-1.9.0.min.js")}')
-  %script(type="text/javascript" src='#{Assets.at("js/bootstrap.min.js")}')
+  %script(type="text/javascript" src='#{Assets.at("js/jquery-ui-1.10.3.custom.min.js")}')
+  %script(type="text/javascript" src='#{Assets.at("js/i18n/grid.locale-en.js")}')
+  %script(type="text/javascript" src='#{Assets.at("js/jquery.jqGrid.min.js")}')
   %body
     -unescape(body)
